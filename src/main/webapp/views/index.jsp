@@ -17,7 +17,7 @@
  	</form>
 --%>
 
-    <form action="addAlien">
+    <form action="addAlien" method="post">
  	    ID: <input type="text" name="aid"/> <br> <br>
  	    Name: <input type="text" name="aname"/> <br> <br>
  	    <input type="submit" value="Submit"/>

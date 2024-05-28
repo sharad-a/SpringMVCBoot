@@ -7,10 +7,11 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -116,8 +117,18 @@ public class HomeController {
         return "result";
     }*/
 
+    // Getting data using @GetMapping
+    @GetMapping("getAliens")
+    public String getAliens(Model m){
+        List<Alien> aliens = Arrays.asList(new Alien(007, "Thala"), new Alien(033, "S. Raina"));
+        m.addAttribute("result", aliens);
+
+        return "showAliens";
+    }
+
     // same as above
-    @RequestMapping("addAlien")
+//    @RequestMapping(value="addAlien", method = RequestMethod.POST)
+    @PostMapping("addAlien")
     public String addAlien(@ModelAttribute("alien") Alien a) {
 
         return "result";

@@ -102,10 +102,17 @@ public class HomeController {
     }*/
 
     // Receiving model attribute from client
-    @RequestMapping("addAlien")
+    /*@RequestMapping("addAlien")
     public String addAlien(@ModelAttribute Alien a,
                            Model m) {
         m.addAttribute("alien", a);
+
+        return "result";
+    }*/
+
+    // same as above
+    @RequestMapping("addAlien")
+    public String addAlien(@ModelAttribute("alien") Alien a) {
 
         return "result";
     }

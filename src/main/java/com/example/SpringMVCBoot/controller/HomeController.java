@@ -13,7 +13,7 @@ public class HomeController {
     @RequestMapping("/")
     public String home() {
         System.out.println("home page requested (index.jsp)");
-        return "index.jsp";
+        return "index";
     }
 
     // Servlet Type Method
@@ -58,7 +58,7 @@ public class HomeController {
                             @RequestParam("num2") int j) {
 
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("result.jsp");
+        mv.setViewName("result");
         // setViewName() is for to return new page - don't use setView()
 
         int ans = i + j;

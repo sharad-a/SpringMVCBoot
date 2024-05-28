@@ -9,9 +9,17 @@
 <body>
  	<h1>Welcome, Sharad</h1>
 
+<%--
  	<form action="add">
  	    Num1: <input type="text" name="num1"/> <br> <br>
  	    Num2: <input type="text" name="num2"/> <br> <br>
+ 	    <input type="submit" value="Submit"/>
+ 	</form>
+--%>
+
+    <form action="addAlien">
+ 	    ID: <input type="text" name="aid"/> <br> <br>
+ 	    Name: <input type="text" name="aname"/> <br> <br>
  	    <input type="submit" value="Submit"/>
  	</form>
 

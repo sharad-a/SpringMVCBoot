@@ -1,8 +1,12 @@
 package com.example.SpringMVCBoot.controller;
 
+import com.example.SpringMVCBoot.model.Alien;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,18 +57,47 @@ public class HomeController {
 
     // Passing values without HttpSession
     // Using ModelAndView
-    @RequestMapping("add")
+    /*@RequestMapping("add")
     public ModelAndView add(@RequestParam("num1") int i,
                             @RequestParam("num2") int j) {
 
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("result");
+*//*        ModelAndView mv = new ModelAndView();
+        mv.setViewName("result");*//*
         // setViewName() is for to return new page - don't use setView()
+
+        ModelAndView mv = new ModelAndView("result");
 
         int ans = i + j;
         mv.addObject("answer", ans);
 
         return mv;
+    }*/
+
+    // sending only data using ModelMap or Model (both have different backend implementation)
+/*    @RequestMapping("add")
+    public String add(@RequestParam("num1") int i,
+                      @RequestParam("num2") int j,
+                      ModelMap m) {
+
+        int ans = i + j;
+        m.addAttribute("answer", ans);
+
+        return "result";
+    }*/
+
+    // Model Attribute
+    @RequestMapping("addAlien")
+    public String addAlien(@RequestParam("aid") int id,
+                           @RequestParam("aname") String name,
+                           Model m) {
+
+        Alien a = new Alien();
+        a.setAid(id);
+        a.setAname(name);
+
+        m.addAttribute("alien", a);
+
+        return "result";
     }
 }
 

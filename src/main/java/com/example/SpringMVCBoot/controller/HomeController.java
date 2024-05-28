@@ -15,6 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
+    // adding Model attribute data to returning page
+    @ModelAttribute
+    public void modelData(Model m) {
+        m.addAttribute("name", "Aliens");
+    }
+
     @RequestMapping("/")
     public String home() {
         System.out.println("home page requested (index.jsp)");

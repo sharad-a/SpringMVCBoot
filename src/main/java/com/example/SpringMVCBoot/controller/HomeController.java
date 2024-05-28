@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeController {
@@ -35,8 +36,8 @@ public class HomeController {
 
     }*/
 
-    // Short method using @RequestParam
-    @RequestMapping("add")
+    // Short method using @RequestParam and HttpSession
+/*    @RequestMapping("add")
     public String add(@RequestParam("num1") int i,
                       @RequestParam("num2") int j,
                       HttpSession session) {
@@ -48,5 +49,42 @@ public class HomeController {
 
         // returning to same page
         // return "index.jsp";
+    }*/
+
+    // Passing values without HttpSession
+    // Using ModelAndView
+    @RequestMapping("add")
+    public ModelAndView add(@RequestParam("num1") int i,
+                            @RequestParam("num2") int j) {
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("result.jsp");
+        // setViewName() is for to return new page - don't use setView()
+
+        int ans = i + j;
+        mv.addObject("answer", ans);
+
+        return mv;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

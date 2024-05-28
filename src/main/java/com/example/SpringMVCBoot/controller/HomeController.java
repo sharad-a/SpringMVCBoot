@@ -7,6 +7,7 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -86,7 +87,7 @@ public class HomeController {
     }*/
 
     // Model Attribute
-    @RequestMapping("addAlien")
+    /*@RequestMapping("addAlien")
     public String addAlien(@RequestParam("aid") int id,
                            @RequestParam("aname") String name,
                            Model m) {
@@ -95,6 +96,15 @@ public class HomeController {
         a.setAid(id);
         a.setAname(name);
 
+        m.addAttribute("alien", a);
+
+        return "result";
+    }*/
+
+    // Receiving model attribute from client
+    @RequestMapping("addAlien")
+    public String addAlien(@ModelAttribute Alien a,
+                           Model m) {
         m.addAttribute("alien", a);
 
         return "result";

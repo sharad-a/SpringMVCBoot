@@ -1,12 +1,20 @@
 package com.example.SpringMVCBoot.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Alien {
 
+    @Id
     private int aid;
     private String aname;
 
     // constructor
 
+
+    public Alien() {
+    }
 
     public Alien(int aid, String aname) {
         this.aid = aid;

@@ -1,8 +1,10 @@
 package com.example.SpringMVCBoot.controller;
 
 import com.example.SpringMVCBoot.model.Alien;
+import com.example.SpringMVCBoot.repo.AlienRepo;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,10 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
+    // using DAO layer
+    @Autowired
+    AlienRepo repo;
 
     // adding Model attribute data to returning page
     @ModelAttribute
@@ -94,7 +100,7 @@ public class HomeController {
     }*/
 
     // Model Attribute
-    /*@RequestMapping("addAlien")
+/*    @RequestMapping("addAlien")
     public String addAlien(@RequestParam("aid") int id,
                            @RequestParam("aname") String name,
                            Model m) {
@@ -109,7 +115,7 @@ public class HomeController {
     }*/
 
     // Receiving model attribute from client
-    /*@RequestMapping("addAlien")
+/*    @RequestMapping("addAlien")
     public String addAlien(@ModelAttribute Alien a,
                            Model m) {
         m.addAttribute("alien", a);
@@ -118,7 +124,7 @@ public class HomeController {
     }*/
 
     // Getting data using @GetMapping
-    @GetMapping("getAliens")
+/*    @GetMapping("getAliens")
     public String getAliens(Model m){
         List<Alien> aliens = Arrays.asList(new Alien(007, "Thala"), new Alien(033, "S. Raina"));
         m.addAttribute("result", aliens);
@@ -130,6 +136,29 @@ public class HomeController {
 //    @RequestMapping(value="addAlien", method = RequestMethod.POST)
     @PostMapping("addAlien")
     public String addAlien(@ModelAttribute("alien") Alien a) {
+
+        return "result";
+    }*/
+
+    // using DAO layer
+    @GetMapping("getAliens")
+    public String getAliens(Model m) {
+        m.addAttribute("result", repo.findAll());
+
+        return "showAliens";
+    }
+
+    @RequestMapping("addAlien")
+    public String addAlien(@RequestParam("aid") int id,
+                           @RequestParam("aname") String name,
+                           Model m) {
+
+        Alien a = new Alien();
+        a.setAid(id);
+        a.setAname(name);
+
+        m.addAttribute("alien", a);
+        repo.save(a);
 
         return "result";
     }

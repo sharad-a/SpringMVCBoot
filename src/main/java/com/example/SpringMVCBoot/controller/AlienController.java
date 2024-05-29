@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+// use @RESTController - don't have to use @Controller and @ResponceBody
+
+//@Controller
+@RestController
 public class AlienController {
 
     @Autowired
     AlienRepo repo;
 
     @GetMapping("aliens")
-    @ResponseBody
+    // @ResponseBody
     public List<Alien> getAliens() {
 
         List<Alien> aliens = repo.findAll();
@@ -24,11 +27,17 @@ public class AlienController {
     }
 
     @GetMapping("alien/{aid}")
-    @ResponseBody
+    // @ResponseBody
     public Alien getAlien(@PathVariable("aid") int id){
 
         Alien a = repo.findById(id).orElse(new Alien(0, ""));
 
         return a;
+    }
+
+    @PostMapping("newAlien")
+    public Alien addAlien(Alien alien) {
+        repo.save(alien);
+        return  alien;
     }
 }

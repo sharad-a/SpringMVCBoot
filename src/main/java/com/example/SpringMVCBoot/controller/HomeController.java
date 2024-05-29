@@ -180,6 +180,14 @@ public class HomeController {
 
         return "showAliens";
     }
+
+/*    @PostMapping("getAlienByFind")
+    public String getAlienByFind(@RequestParam("aname") String aname,
+                                 Model m) {
+        m.addAttribute("result", repo.find(aname));
+
+        return "showAliens";
+    }*/
 }
 
 

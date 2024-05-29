@@ -148,7 +148,7 @@ public class HomeController {
         return "showAliens";
     }
 
-    @RequestMapping("addAlien")
+    @PostMapping("addAlien")
     public String addAlien(@RequestParam("aid") int id,
                            @RequestParam("aname") String name,
                            Model m) {
@@ -161,6 +161,24 @@ public class HomeController {
         repo.save(a);
 
         return "result";
+    }
+
+    @PostMapping("getAlien")
+    public String getAlien(@RequestParam int aid,
+                           Model m) {
+        m.addAttribute("result", repo.getOne(aid));
+
+        return "showAliens";
+
+    }
+
+    @PostMapping("getAlienByName")
+    public String getAlienByName(@RequestParam String aname,
+                                 Model m) {
+        // m.addAttribute("result", repo.findByAname(aname));
+        m.addAttribute("result", repo.findByAnameOrderByAidDesc(aname));
+
+        return "showAliens";
     }
 }
 

@@ -23,6 +23,20 @@
  	    <input type="submit" value="Submit"/>
  	</form>
 
+ 	<br><hr><br>
+
+ 	<form action="getAlien" method="post">
+        ID: <input type="text" name="aid"/> <br> <br>
+        <input type="submit" value="Submit"/>
+    </form>
+
+ 	<br><hr><br>
+
+ 	<form action="getAlienByName" method="post">
+        Name: <input type="text" name="aname"/> <br> <br>
+        <input type="submit" value="Submit"/>
+    </form>
+
  	<h2> answer is ${answer} </h2>
 </body>
 </html>
